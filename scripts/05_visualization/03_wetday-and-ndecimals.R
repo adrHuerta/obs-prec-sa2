@@ -114,8 +114,8 @@ n_decimals_plot <-
         legend.background = element_blank(),
         legend.title.position = "left",
         legend.title = element_text(size = 10, angle = 90, hjust = 0.5)) +
-  theme(axis.text.x = element_text(size = 8),
-        axis.text.y = element_text(size = 8))
+  theme(axis.ticks = element_blank(),
+        axis.text = element_blank())
 
 wet_day_plot <-
   ggplot() +
@@ -149,8 +149,8 @@ wet_day_plot <-
         legend.background = element_blank(),
         legend.title.position = "left",
         legend.title = element_text(size = 10, angle = 90, hjust = 0.5)) +
-  theme(axis.text.x = element_text(size = 8),
-        axis.text.y = element_text(size = 8)) +
+  theme(axis.ticks = element_blank(),
+        axis.text = element_blank()) +
   labs(fill = "Wet day (%)", colour = "Wet day (%)")
 
 final_plot <-
@@ -169,5 +169,5 @@ ggsave(
   plot = final_plot,
   device = "pdf",
   dpi = 500, scale = 1,
-  width = 5.5, height = 4, units = "in"
+  width = 5, height = 4, units = "in"
 )
