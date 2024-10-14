@@ -21,28 +21,6 @@ raw_data <- readRDS(
   )
 )
 
-rm(list = ls())
-
-library(xts)
-source("R/utils/pipe.R")
-source("R/utils/get_nearby_points.R")
-source("R/04_homogenization/detec-correc-helpers.R")
-source("R/04_homogenization/detec-cleaning.R")
-source("R/04_homogenization/detec-tests.R")
-source("R/04_homogenization/correc-tests.R")
-source("R/04_homogenization/detec-correc-workflow.R")
-
-
-# using obs-bc
-raw_data <- readRDS(
-  file.path(
-    "data",
-    "processed",
-    "point",
-    "datos_SA_1960-2015_v1.2_04_obs-bc.RDS"
-  )
-)
-
 ## station from MPN ecoregion
 idd_s <- raw_data$xyz[!is.na(raw_data$xyz$EQC) &
                         raw_data$xyz$EQC == 1 &
