@@ -4,4 +4,3 @@ if (interactive() && Sys.getenv("RSTUDIO") == "") {
 
 source("renv/activate.R")
 options(vsc.use_httpgd = TRUE)
-Sys.setlocale("LC_TIME", "C") # climcal1
