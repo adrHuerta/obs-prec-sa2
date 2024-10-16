@@ -37,36 +37,55 @@ apply_break_detection <- function(time_series) {
 break_detection_tests <- function(time_serie,
                                   p_value = 0.05) {
 
-  break_prosition_pettit <- suppressWarnings(
-    BreakPoints::pettit(serie = time_serie)
-  )
-  break_prosition_man.whi <- suppressWarnings(
-    BreakPoints::man.whi(serie = time_serie)
-  )
-  break_prosition_stu <- suppressWarnings(
-    BreakPoints::stu(serie = time_serie)
-  )
-  break_prosition_snht <- suppressWarnings(
-    BreakPoints::SNHT(serie = time_serie, simulations = 100)
-  )
-  break_prosition_buishand <- suppressWarnings(
-    BreakPoints::Buishand_R(serie = time_serie, simulations = 100)
-  )
+  same_values <- var(as.numeric(time_serie))
 
-  res <-
-    rbind(
-      data.frame(break_prosition_pettit, test = "Pettitt test"),
-      data.frame(break_prosition_man.whi, test = "Mann-Whitney-Wilcoxon test"),
-      data.frame(break_prosition_stu, test = "Student t test"),
-      data.frame(break_prosition_snht,
-                 test = "Standard Normal Homogeneity test"),
-      data.frame(break_prosition_buishand, test = "Buishand Range test")
+  if (same_values == 0) {
+
+    res <- data.frame(
+      test = "No test",
+      breaks = NA,
+      year_break = NA,
+      p.value = NA,
+      sig = NA
     )
 
-  res$year_break <- as.numeric(format(time(time_serie)[res$breaks], "%Y"))
-  res$sig <- sapply(res$p.value, function(x) ifelse(x < p_value, 0, 1))
+  } else {
 
-  return(res[, c("test", "breaks", "year_break", "p.value", "sig")])
+    break_prosition_pettit <- suppressWarnings(
+      BreakPoints::pettit(serie = time_serie)
+    )
+    break_prosition_man.whi <- suppressWarnings(
+      BreakPoints::man.whi(serie = time_serie)
+    )
+    break_prosition_stu <- suppressWarnings(
+      BreakPoints::stu(serie = time_serie)
+    )
+    break_prosition_snht <- suppressWarnings(
+      BreakPoints::SNHT(serie = time_serie, simulations = 100)
+    )
+    break_prosition_buishand <- suppressWarnings(
+      BreakPoints::Buishand_R(serie = time_serie, simulations = 100)
+    )
+
+    res <-
+      rbind(
+        data.frame(break_prosition_pettit, test = "Pettitt test"),
+        data.frame(break_prosition_man.whi,
+                   test = "Mann-Whitney-Wilcoxon test"),
+        data.frame(break_prosition_stu, test = "Student t test"),
+        data.frame(break_prosition_snht,
+                   test = "Standard Normal Homogeneity test"),
+        data.frame(break_prosition_buishand, test = "Buishand Range test")
+      )
+
+    res$year_break <- as.numeric(format(time(time_serie)[res$breaks], "%Y"))
+    res$sig <- sapply(res$p.value, function(x) ifelse(x < p_value, 0, 1))
+
+    res <- res[, c("test", "breaks", "year_break", "p.value", "sig")]
+
+  }
+
+  return(res)
 
 }
 

@@ -136,6 +136,7 @@ detection_test <- function(target_data) {
 
                 })
   out <- do.call(rbind, out)
+  out <- out[complete.cases(out), ]
 
   break_year <- get_break_year(detection_results_output = out)
 
