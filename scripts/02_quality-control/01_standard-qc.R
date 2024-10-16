@@ -117,6 +117,7 @@ qc_data <- lapply(qc_data, `[[`, "qc_data")
 
 
 # zscore_based_outlier_check
+### three times
 
 qc_data <-
   qc_data %>%
@@ -124,17 +125,51 @@ qc_data <-
 
     zscore_based_outlier_check(target_xts = z, out_weight = 9)
 
-  }, mc.cores = 100)
+  }, mc.cores = 50)
 
+qc_zcore_out_01 <- lapply(qc_data, `[[`, "qc_data_flagged") %>%
+  do.call(cbind, .)
+
+qc_data <- lapply(qc_data, `[[`, "qc_data")
+qc_data <- do.call(cbind, qc_data)
+
+qc_data <-
+  qc_data %>%
+  parallel::mclapply(function(z) {
+
+    zscore_based_outlier_check(target_xts = z, out_weight = 9)
+
+  }, mc.cores = 50)
+
+qc_zcore_out_02 <- lapply(qc_data, `[[`, "qc_data_flagged") %>%
+  do.call(cbind, .)
+
+qc_data <- lapply(qc_data, `[[`, "qc_data")
+qc_data <- do.call(cbind, qc_data)
+
+qc_data <-
+  qc_data %>%
+  parallel::mclapply(function(z) {
+
+    zscore_based_outlier_check(target_xts = z, out_weight = 9)
+
+  }, mc.cores = 50)
+
+qc_zcore_out_03 <- lapply(qc_data, `[[`, "qc_data_flagged") %>%
+  do.call(cbind, .)
+
+qc_zcore_out <- qc_zcore_out_01 + qc_zcore_out_02 + qc_zcore_out_03
 
 saveRDS(
-  lapply(qc_data, `[[`, "qc_data_flagged") %>% do.call(cbind, .),
+  qc_zcore_out,
   file.path(
     "output",
     "02_quality-control",
     "sqc-05-zscore-outlier.RDS"
   )
 )
+rm(list = ls(pattern = "qc_zcore_out"))
+
 
 qc_data <- lapply(qc_data, `[[`, "qc_data")
 qc_data <- do.call(cbind, qc_data)
