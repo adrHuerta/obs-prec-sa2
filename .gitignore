@@ -7,7 +7,7 @@ sandbox/
 staging/
 renv/
 data/processed/point/datos_CH_1863-2020_v2.RDS
-data/processed/point/datos_era5land_ecoregion_sa_qmap.RDS.RDS
+data/processed/point/datos_era5land_ecoregion_sa_qmap.RDS
 data/processed/point/datos_ESParagon_1950_2020_v3.RDS
 data/processed/point/datos_SA_1960-2015_v1.2_01.RDS
 data/processed/point/datos_SA_1960-2015_v1.2_02.RDS
