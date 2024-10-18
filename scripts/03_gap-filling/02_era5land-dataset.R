@@ -1,6 +1,6 @@
 rm(list = ls())
 
-library(xts)
+suppressMessages(library(xts))
 source("R/utils/pipe.R")
 source("R/03_gap-filling/era5land-grid.R")
 

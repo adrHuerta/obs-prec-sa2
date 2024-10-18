@@ -1,9 +1,9 @@
 rm(list = ls())
 
 source("R/utils/pipe.R")
-library(tidyterra)
-library(terra)
-library(ggplot2)
+suppressMessages(library(ggplot2))
+suppressMessages(library(tidyterra))
+suppressMessages(library(terra))
 
 raw_data <- readRDS(
   file.path("data",

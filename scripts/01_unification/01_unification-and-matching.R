@@ -175,7 +175,7 @@ length(check_elev_removed_stations)
 # raw_data_xyz4 <- raw_data_xyz3[-match(check_elev_removed_stations,
 #                                       raw_data_xyz3$ID),
 # ]
-# rownames(raw_data_xyz4) <- NULL
+# rownames(raw_data_xyz4) <- NULL 
 
 all(colnames(raw_data_data3) == raw_data_xyz3$ID)
 raw_data <- list(data = raw_data_data3,

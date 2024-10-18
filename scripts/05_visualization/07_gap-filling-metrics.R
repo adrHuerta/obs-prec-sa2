@@ -2,7 +2,7 @@ rm(list = ls())
 
 source("R/utils/pipe.R")
 source("R/03_gap-filling/gf-metrics.R")
-library(ggplot2)
+suppressMessages(library(ggplot2))
 
 gf_results_path <- file.path("output", "03_gap-filling", "bc_pred")
 

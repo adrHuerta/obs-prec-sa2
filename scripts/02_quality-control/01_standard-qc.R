@@ -125,7 +125,7 @@ qc_data <-
 
     zscore_based_outlier_check(target_xts = z, out_weight = 9)
 
-  }, mc.cores = 50)
+  }, mc.cores = 100)
 
 qc_zcore_out_01 <- lapply(qc_data, `[[`, "qc_data_flagged") %>%
   do.call(cbind, .)
@@ -139,7 +139,7 @@ qc_data <-
 
     zscore_based_outlier_check(target_xts = z, out_weight = 9)
 
-  }, mc.cores = 50)
+  }, mc.cores = 100)
 
 qc_zcore_out_02 <- lapply(qc_data, `[[`, "qc_data_flagged") %>%
   do.call(cbind, .)
@@ -153,7 +153,7 @@ qc_data <-
 
     zscore_based_outlier_check(target_xts = z, out_weight = 9)
 
-  }, mc.cores = 50)
+  }, mc.cores = 100)
 
 qc_zcore_out_03 <- lapply(qc_data, `[[`, "qc_data_flagged") %>%
   do.call(cbind, .)

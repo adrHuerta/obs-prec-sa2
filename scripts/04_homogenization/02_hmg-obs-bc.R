@@ -1,6 +1,6 @@
 rm(list = ls())
 
-library(xts)
+suppressMessages(library(xts))
 source("R/utils/pipe.R")
 source("R/utils/get_nearby_points.R")
 source("R/04_homogenization/detec-correc-helpers.R")

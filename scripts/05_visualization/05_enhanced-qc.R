@@ -1,12 +1,11 @@
 rm(list = ls())
 
 source("R/utils/pipe.R")
-library(xts)
-library(data.table)
-library(terra)
-library(tidyterra)
-library(ggplot2)
-
+suppressMessages(library(xts))
+suppressMessages(library(ggplot2))
+suppressMessages(library(data.table))
+suppressMessages(library(tidyterra))
+suppressMessages(library(terra))
 
 shp_esa_data <- vect(
   file.path("data",

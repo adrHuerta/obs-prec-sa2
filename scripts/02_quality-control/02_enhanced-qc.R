@@ -1,6 +1,6 @@
 rm(list = ls())
 
-library(xts)
+suppressMessages(library(xts))
 source("R/utils/pipe.R")
 source("R/02_quality-control/rounding-and-precision.R")
 source("R/02_quality-control/weekly-cycles.R")

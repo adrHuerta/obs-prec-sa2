@@ -1,6 +1,6 @@
 rm(list = ls())
 
-library(xts)
+suppressMessages(library(xts))
 source("R/utils/pipe.R")
 
 raw_data <- readRDS(

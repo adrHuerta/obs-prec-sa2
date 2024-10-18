@@ -1,9 +1,9 @@
 rm(list = ls())
 
-library(xts)
-library(PCAtools)
-library(corrplot)
-library(cowplot)
+suppressMessages(library(xts))
+suppressMessages(library(PCAtools))
+suppressMessages(library(corrplot))
+suppressMessages(library(cowplot))
 source("R/utils/pipe.R")
 
 raw_data <- readRDS(
@@ -64,10 +64,12 @@ elbow
 
 screeplot(data_pca2,
           vline = c(horn$n, elbow)) +
-  geom_label(aes(x = horn$n + 0.1, y = 50,
-                 label = 'Horn\'s', vjust = 2, size = 3)) +
-  geom_label(aes(x = elbow + 0.1, y = 50,
-                 label = 'Elbow method', vjust = -1, size = 3))
+  annotate("text", x = horn$n + 0.1, y = 50,
+           label = "Horn\'s", size = 3, vjust = 2) +
+  annotate("text", x = elbow + 0.1, y = 50,
+           label = "Elbow method", size = 3, vjust = -1)
+
+
 
 corrplot(cor(scaled_target),
          method = "number",
@@ -102,8 +104,8 @@ elbow
 scre1 <-
   screeplot(data_pca3,
             vline = c(horn$n)) +
-  geom_label(aes(x = horn$n + 0.1, y = 100,
-                 label = "Horn\'s", vjust = 2, size = 3)) +
+  annotate("text", x = horn$n + 0.25, y = 100,
+           label = "Horn\'s", size = 5, vjust = 2) +
   theme(plot.title = element_blank()) +
   theme(plot.margin = grid::unit(c(-2, 1, -5, 1), "mm")) +
   theme(axis.text.x = element_text(size = 12),

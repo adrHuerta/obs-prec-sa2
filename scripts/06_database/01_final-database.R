@@ -1,11 +1,10 @@
 rm(list = ls())
 
-library(xts)
+suppressMessages(library(xts))
 source("R/utils/pipe.R")
 
 
 final_database_path <- file.path("output", "06_database")
-
 
 # xyz dataset
 # same of the hmg or gf
@@ -63,7 +62,7 @@ hmg_results_path_bc <- file.path(
   "output", "04_homogenization", "obs_bc"
 )
 
-ecr <- "MPN"
+ecr <- c("NAS", "PAD", "CAS", "SAS", "AOL", "EHL", "GCH", "PPS", "MPN")
 
 for (ecr_i in ecr) {
 
@@ -167,6 +166,9 @@ for (ecr_i in ecr) {
             ),
             row.names = FALSE
         )
+        
+        rm(final_dataframe)
+        gc()
 
 
     }, mc.cores = 50

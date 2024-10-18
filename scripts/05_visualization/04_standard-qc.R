@@ -1,9 +1,9 @@
 rm(list = ls())
 
 source("R/utils/pipe.R")
-library(xts)
-library(data.table)
-library(ggplot2)
+suppressMessages(library(xts))
+suppressMessages(library(ggplot2))
+suppressMessages(library(data.table))
 
 # qc output data
 
