@@ -65,6 +65,9 @@ nstation_per_grid <- terra::classify(
 
 ## ecoregions per space
 
+palette_OkabeIto <- c("#56B4E9", "#F0E442", "gray40", "#E69F00", "#009E73",
+                      "#0072B2", "#D55E00", "#999999", "#CC79A7")
+
 shp_eSA_data$nr_id <- factor(
   shp_eSA_data$nr_id,
   levels = c("NAS", "PAD", "CAS", "SAS", "AOL", "EHL", "GCH", "PPS", "MPN")
@@ -80,19 +83,19 @@ ecoregions_plot <-
                      expand = c(0, 0)) +
   scale_y_continuous(limits = c(-59, 14),
                      expand = c(0, 0)) +
-  scale_fill_viridis_d("       Ecoregions",
-                       direction = -1,
-                       guide = guide_legend(override.aes = list(color = NA),
-                                            title.position = "left",
-                                            order = 1,
-                                            barheight = .7,
-                                            barwidth = .5,
-                                            title.theme =
-                                              element_text(
-                                                size = 9,
-                                                angle = 90,
-                                                vjust = 0.5
-                                              ))) +
+  scale_fill_manual("       Ecoregions",
+                    values = palette_OkabeIto,
+                    guide = guide_legend(override.aes = list(color = NA),
+                                         title.position = "left",
+                                         order = 1,
+                                         barheight = .7,
+                                         barwidth = .5,
+                                         title.theme =
+                                           element_text(
+                                             size = 9,
+                                             angle = 90,
+                                             vjust = 0.5
+                                           ))) +
   theme_bw() +
   theme(axis.title = element_blank(),
         legend.text = element_text(size=8.5),
